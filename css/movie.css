@@ -1,0 +1,144 @@
+@font-face {
+  font-family: "RixInooAriDuriR";
+  src: url("https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2207-01@1.0/RixInooAriDuriR.woff2")
+    format("woff2");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "TTTogether";
+  src: url("https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/TTTogetherA.woff")
+    format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+/* ㅡㅡㅡㅡㅡㅡㅡㅡㅡ HEADER CSS ㅡㅡㅡㅡㅡㅡㅡㅡㅡ */
+
+#header {
+  height: 150px;
+  background-color: black;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 120px;
+}
+
+#logo {
+  font-family: "RixInooAriDuriR";
+  font-size: 50px;
+  color: red;
+}
+
+#input-btn {
+  display: flex;
+  align-items: center;
+}
+
+#input-box {
+  border-radius: 10px;
+  border: 1px solid white;
+  width: 300px;
+  height: 20px;
+  padding: 10px;
+  outline: none;
+  margin-right: 10px;
+  display: none;
+}
+
+#search-btn {
+  cursor: pointer;
+  border-radius: 10px;
+  border: 1px solid white;
+  background-color: white;
+  font-weight: bold;
+  width: 60px;
+  height: 45px;
+  margin-right: 10px;
+  display: none;
+}
+
+#search-btn:hover {
+  transform: scale(1.1);
+  /* transition: 0.2s; */
+}
+
+/* ㅡㅡㅡㅡㅡㅡㅡㅡㅡ MAIN CSS ㅡㅡㅡㅡㅡㅡㅡㅡㅡ */
+
+#main {
+  font-family: "TTTogether";
+  width: 1600px;
+  margin: 0 auto;
+}
+
+#title {
+  font-size: 50px;
+  border-bottom: 5px solid black;
+  padding: 100px 0 20px 0;
+}
+
+#movie-card {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 50px;
+  margin: 80px 0;
+}
+
+.card {
+  width: 300px;
+  /* position: relative; */
+}
+
+#poster-img {
+  width: 100%;
+}
+
+#rank {
+  text-align: center;
+  padding: 10px 0;
+  background-color: red;
+  color: white;
+}
+
+#contentBox {
+  position: relative;
+}
+
+.content {
+  position: absolute;
+  color: white;
+  text-align: center;
+  opacity: 0;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  line-height: 24px;
+}
+
+.content:hover {
+  opacity: 1;
+  cursor: pointer;
+}
+
+#movie-p p {
+  text-align: center;
+  margin-top: 10px;
+}
+
+/* ㅡㅡㅡㅡㅡㅡㅡㅡㅡ FOOTER CSS ㅡㅡㅡㅡㅡㅡㅡㅡㅡ */
+
+#footer {
+  height: 150px;
+  background-color: black;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 100px;
+}
+
+.footer-p {
+  font-size: 20px;
+  font-weight: bold;
+}

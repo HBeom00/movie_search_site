@@ -3,11 +3,32 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="./movie.css" />
-    <link rel="stylesheet" href="./movie.js" />
+    <link rel="stylesheet" href="./css/movie.css" />
+    <link rel="stylesheet" href="./css/reset.css" />
+    <script defer src="./movie.js"></script>
     <title>영화 검색</title>
   </head>
   <body>
-    <p>영화 검색 레퍼지토리 생성</p>
+    <header id="header">
+      <p id="logo">HGV</p>
+      <div id="input-btn">
+        <input id="input-box" type="text" placeholder="제목을 입력해 주세요" />
+        <button id="search-btn">검색</button>
+        <img
+          id="search-img"
+          src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAC0AAAAtCAYAAAA6GuKaAAAAAXNSR0IArs4c6QAABBBJREFUaEPtmG3InmMYx39/SZH3FAnzFh8oG0uR0kpTKC9RMqYlmkWYRYsyJYnGvlhIXmKTUKaWRELyEmvyMsK8JkRhNR98OVz/uq46nbuu+znv87HnJY5vz32fx//4Ped9XMf5Py8xC0OzkJn/HnREzAEOAv4CfpL041T8cmPtdEQcDiwCzgZOGQDcCDwDPCtp+874J4qgI2Jv4DbgGmC3QhDv+q3Ao5KiMKdo2YTQEXEq8FzbBkWi2aLXgYsk/VKT3JczEjoirgAeHij2PbAJ2ArsARzVtsxePet/BhZI+vTfAB+EjogFwKs9RR4A1kr6qA8gIhYCy4Ezs++/BOZL+mOy4L3QEXEg4F3ZLyng3TpD0sclRSPicuCxbO3zks4vyR+1Zgj6fmBZkvgbME/St+MUjIhLgHVZzumS3hhHJ1+7A3REHAF8lS1cKOnlmkIR8SBwVZL7tiQ/3NXRB72qHW+d6JOSLqut0I7Lb7JWO1LS17WafdCbgbmJ4BxJ39UWcF5ErGzm+52JxgpJq2s1/wEdER5X2xKxzZJOrBXv8iLiWOCzRGejpHNqdXNoz1qPpi4ekeRZPemIiD+B3VuhTyQdXyuaQ58MvJuI3S3p5lrxNC8iPgBOaD/bJmmfWt0c+iTg/URstaQVteIZtE/PrtW2S9qzVjeHPhj4IRFbJ+nSWvEM2gbKNtaxVdLRtbp90yN1ZFskHVcrnjyIhwLpBNog6bxa3T7olwD7hy6OkfRFbQHnRcT1wH2JxvKmp9O/x5Lvg86d3foG2sa/KiLCDtDH/wGJgI2Te7wq+qA9lnxa2TR1MZljfC1wdaK1SdL8Kto2acgwuYiLdfGrn/xmZttDF0dELAYezxLsq18rFulZOMpPv2f/m+TY6S2RtKGkYES4Z93Laaxp/PQNJfmj1oyCPgSwD0l70Vq+tK6StKVPuDlEPBXubXbYbjENX3L9a32+06AtHBHeaU+T/XsKue/TMbYL4MPJD14evwP7th8+bfMk6cNa+JKLrQ8BX7s8a8cN+w07vBeBfIf9quEOSe+MKzohdLvjPnKXAD7SDyss8gJwbWdrG6f3VOP0Lu7JvVGS26k4iqBTtYg4ren1c9ubt/veb5l8WfXx75u5DdcrklLj5VazWbJp6otFktaXUo8NXSrcty4i3BJnDWgslvREif5UQ/tV2lsjwJZK8p1yZEwpdPt8XNdMkjUjqG6X5HvqYEw5dAvuFvEhtesA2U2S7hminhboFvyC9h3hENuFkvwOcYeYNugW/ErgoRGd0OsGpxU6AffDl7OslHTXjNvpDqh1g37v14EPAjtn2nc6Ae8uH7dISl/szKyezml82kp6c8bN6YmASr6fMe1RAtut+R96nN2azNpZudN/AyUaOz0zBLwCAAAAAElFTkSuQmCC"
+        />
+      </div>
+    </header>
+    <main id="main">
+      <div>
+        <p id="title">무비 차트</p>
+      </div>
+      <div id="movie-card"></div>
+    </main>
+    <footer id="footer">
+      <p class="footer-p">Tomorrow's learning camp</p>
+      <p class="footer-p">shin hee beom</p>
+    </footer>
   </body>
 </html>
