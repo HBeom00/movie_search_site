@@ -7,7 +7,7 @@ const $searchBtn = document.querySelector("#search-btn");
 const $searchImg = document.querySelector("#search-img");
 const $movieCard = document.querySelector("#movie-card");
 
-// 검색 이미지 클릭시, input box && button 화면에 보임
+// header 우측 돋보기 클릭시, input box && button 화면에 표시
 let num = 0;
 $searchImg.addEventListener("click", () => {
   if (num === 0) {
@@ -24,6 +24,7 @@ $searchImg.addEventListener("click", () => {
 fetch(URL)
   .then((response) => response.json())
   .then((data) => {
+    // forEach 반목문으로 영화 포스터 태크 생성
     data.results.forEach((el, index) => {
       const $div = document.createElement("div");
       $div.className = "card";
@@ -44,12 +45,14 @@ fetch(URL)
               `;
       $movieCard.appendChild($div);
 
+      // alert로 영화 id 출력
       $div.addEventListener("click", () => {
         alert(`영화 id: ${el.id}`);
       });
     });
 
-    $searchBtn.addEventListener("click", () => {
+    // 필터링된 영화 목록 생성하는 함수
+    const filterSearch = () => {
       let filterData = [];
       if ($inputBox.value.length === 0) {
         alert("내용을 입력하세요.");
@@ -60,6 +63,7 @@ fetch(URL)
         console.log(filterData, "filter");
         if (filterData.length === 0) {
           alert("관련 영화가 없습니다.");
+          $inputBox.value = "";
         } else {
           $movieCard.innerHTML = "";
           filterData.forEach((el, index) => {
@@ -89,35 +93,18 @@ fetch(URL)
           });
         }
       }
+    };
 
-      // data.results.forEach((el, index) => {
-      //   if (el.title.toLowerCase().includes($inputBox.value.toLowerCase())) {
-      //     $movieCard.innerHTML = "";
-      //     const $div = document.createElement("div");
-      //     $div.className = "card";
-      //     $div.innerHTML = `
-      //         <p id="rank">No.${index + 1}</p>
-      //         <div id="contentBox">
-      //           <div class="content" id="${el.id}">${el.overview}</div>
-      //           <img
-      //             id="poster-img"
-      //             src="https://image.tmdb.org/t/p/w500/${el.poster_path}"
-      //             alt="img"
-      //           />
-      //         </div>
-      //         <div id="movie-p">
-      //           <p>${el.title}</p>
-      //           <p>Rating: ${el.vote_average}</p>
-      //         </div>
-      //         `;
-      //     $movieCard.appendChild($div);
+    // 검색 버튼 클릭 이벤트
+    $searchBtn.addEventListener("click", () => {
+      filterSearch();
+    });
 
-      //     $div.addEventListener("click", () => {
-      //       alert(`영화 id: ${el.id}`);
-      //     });
-      //     $inputBox.value = "";
-      //   }
-      // });
+    // 엔터 하면 검색하는 이벤트
+    $inputBox.addEventListener("keypress", (e) => {
+      if (e.keyCode === 13) {
+        filterSearch();
+      }
     });
   })
   .catch((error) => console.error("Error:", error));
