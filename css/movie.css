@@ -63,6 +63,10 @@
   /* transition: 0.2s; */
 }
 
+#search-img {
+  cursor: pointer;
+}
+
 /* ㅡㅡㅡㅡㅡㅡㅡㅡㅡ MAIN CSS ㅡㅡㅡㅡㅡㅡㅡㅡㅡ */
 
 #main {

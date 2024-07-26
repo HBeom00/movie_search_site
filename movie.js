@@ -50,34 +50,74 @@ fetch(URL)
     });
 
     $searchBtn.addEventListener("click", () => {
-      $movieCard.innerHTML = "";
-      data.results.forEach((el, index) => {
-        if (el.title.includes($inputBox.value)) {
-          const $div = document.createElement("div");
-          $div.className = "card";
-          $div.innerHTML = `
-              <p id="rank">No.${index + 1}</p>
-              <div id="contentBox">
-                <div class="content" id="${el.id}">${el.overview}</div>
-                <img
-                  id="poster-img"
-                  src="https://image.tmdb.org/t/p/w500/${el.poster_path}"
-                  alt="img"
-                />
-              </div>
-              <div id="movie-p">
-                <p>${el.title}</p>
-                <p>Rating: ${el.vote_average}</p>
-              </div>
-              `;
-          $movieCard.appendChild($div);
+      let filterData = [];
+      if ($inputBox.value.length === 0) {
+        alert("내용을 입력하세요.");
+      } else {
+        filterData = data.results.filter((el) =>
+          el.title.toLowerCase().includes($inputBox.value.toLowerCase())
+        );
+        console.log(filterData, "filter");
+        if (filterData.length === 0) {
+          alert("관련 영화가 없습니다.");
+        } else {
+          $movieCard.innerHTML = "";
+          filterData.forEach((el, index) => {
+            const $div = document.createElement("div");
+            $div.className = "card";
+            $div.innerHTML = `
+                <p id="rank">No.${index + 1}</p>
+                <div id="contentBox">
+                  <div class="content" id="${el.id}">${el.overview}</div>
+                  <img
+                    id="poster-img"
+                    src="https://image.tmdb.org/t/p/w500/${el.poster_path}"
+                    alt="img"
+                  />
+                </div>
+                <div id="movie-p">
+                  <p>${el.title}</p>
+                  <p>Rating: ${el.vote_average}</p>
+                </div>
+                `;
+            $movieCard.appendChild($div);
 
-          $div.addEventListener("click", () => {
-            alert(`영화 id: ${el.id}`);
+            $div.addEventListener("click", () => {
+              alert(`영화 id: ${el.id}`);
+            });
+            $inputBox.value = "";
           });
-          $inputBox.value = "";
         }
-      });
+      }
+
+      // data.results.forEach((el, index) => {
+      //   if (el.title.toLowerCase().includes($inputBox.value.toLowerCase())) {
+      //     $movieCard.innerHTML = "";
+      //     const $div = document.createElement("div");
+      //     $div.className = "card";
+      //     $div.innerHTML = `
+      //         <p id="rank">No.${index + 1}</p>
+      //         <div id="contentBox">
+      //           <div class="content" id="${el.id}">${el.overview}</div>
+      //           <img
+      //             id="poster-img"
+      //             src="https://image.tmdb.org/t/p/w500/${el.poster_path}"
+      //             alt="img"
+      //           />
+      //         </div>
+      //         <div id="movie-p">
+      //           <p>${el.title}</p>
+      //           <p>Rating: ${el.vote_average}</p>
+      //         </div>
+      //         `;
+      //     $movieCard.appendChild($div);
+
+      //     $div.addEventListener("click", () => {
+      //       alert(`영화 id: ${el.id}`);
+      //     });
+      //     $inputBox.value = "";
+      //   }
+      // });
     });
   })
   .catch((error) => console.error("Error:", error));
