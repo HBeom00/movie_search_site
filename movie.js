@@ -7,7 +7,7 @@ const $searchBtn = document.querySelector("#search-btn");
 const $searchImg = document.querySelector("#search-img");
 const $movieCard = document.querySelector("#movie-card");
 
-// header 우측 돋보기 클릭시, input box && button 화면에 표시
+// header 우측 돋보기 클릭시, input box && button 화면 표시
 let num = 0;
 $searchImg.addEventListener("click", () => {
   if (num === 0) {
