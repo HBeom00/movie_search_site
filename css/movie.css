@@ -75,6 +75,10 @@
   margin: 0 auto;
 }
 
+#title-div {
+  margin: 0 30px;
+}
+
 #title {
   font-size: 50px;
   border-bottom: 5px solid black;
