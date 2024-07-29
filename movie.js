@@ -21,55 +21,53 @@ $searchImg.addEventListener("click", () => {
   }
 });
 
-fetch(URL)
-  .then((response) => response.json())
-  .then((data) => {
-    // forEach 반목문으로 영화 포스터 태크 생성
-    data.results.forEach((el, index) => {
-      const $div = document.createElement("div");
-      $div.className = "card";
-      $div.innerHTML = `
-              <p id="rank">No.${index + 1}</p>
-              <div id="contentBox">
-                <div class="content" id="${el.id}">${el.overview}</div>
-                <img
-                  id="poster-img"
-                  src="https://image.tmdb.org/t/p/w500/${el.poster_path}"
-                  alt="img"
-                />
-              </div>
-              <div id="movie-p">
-                <p>${el.title}</p>
-                <p>Rating: ${el.vote_average}</p>
-              </div>
-              `;
-      $movieCard.appendChild($div);
+// 영화 포스터 추가하는 함수
+const addCard = (card) => {
+  card.forEach((el, index) => {
+    const $div = document.createElement("div");
+    $div.className = "card";
+    $div.innerHTML = `
+            <p id="rank">No.${index + 1}</p>
+            <div id="contentBox">
+              <div class="content" id="${el.id}">${el.overview}</div>
+              <img
+                id="poster-img"
+                src="https://image.tmdb.org/t/p/w500/${el.poster_path}"
+                alt="img"
+              />
+            </div>
+            <div id="movie-p">
+              <p>${el.title}</p>
+              <p>Rating: ${el.vote_average}</p>
+            </div>
+            `;
+    $movieCard.appendChild($div);
 
-      // alert로 영화 id 출력
-      $div.addEventListener("click", () => {
-        alert(`영화 id: ${el.id}`);
-      });
+    // alert로 영화 id 출력
+    $div.addEventListener("click", () => {
+      alert(`영화 id: ${el.id}`);
     });
+  });
+};
 
-    // 필터링된 영화 목록 생성하는 함수
-    const filterSearch = () => {
-      let filterData = [];
-      if ($inputBox.value.length === 0) {
-        alert("내용을 입력하세요.");
-      } else {
-        filterData = data.results.filter((el) =>
-          el.title.toLowerCase().includes($inputBox.value.toLowerCase())
-        );
-        console.log(filterData, "filter");
-        if (filterData.length === 0) {
-          alert("관련 영화가 없습니다.");
-          $inputBox.value = "";
-        } else {
-          $movieCard.innerHTML = "";
-          filterData.forEach((el, index) => {
-            const $div = document.createElement("div");
-            $div.className = "card";
-            $div.innerHTML = `
+// 필터링된 영화 목록 생성하는 함수
+const filterCard = (card2) => {
+  let filterData = [];
+  if ($inputBox.value.length === 0) {
+    alert("내용을 입력하세요.");
+  } else {
+    filterData = card2.filter((el) =>
+      el.title.toLowerCase().includes($inputBox.value.toLowerCase())
+    );
+    if (filterData.length === 0) {
+      alert("관련 영화가 없습니다.");
+      $inputBox.value = "";
+    } else {
+      $movieCard.innerHTML = "";
+      filterData.forEach((el, index) => {
+        const $div = document.createElement("div");
+        $div.className = "card";
+        $div.innerHTML = `
                 <p id="rank">No.${index + 1}</p>
                 <div id="contentBox">
                   <div class="content" id="${el.id}">${el.overview}</div>
@@ -84,26 +82,33 @@ fetch(URL)
                   <p>Rating: ${el.vote_average}</p>
                 </div>
                 `;
-            $movieCard.appendChild($div);
+        $movieCard.appendChild($div);
 
-            $div.addEventListener("click", () => {
-              alert(`영화 id: ${el.id}`);
-            });
-            $inputBox.value = "";
-          });
-        }
-      }
-    };
+        $div.addEventListener("click", () => {
+          alert(`영화 id: ${el.id}`);
+        });
+        $inputBox.value = "";
+      });
+    }
+  }
+};
+
+// Api data 가져오기
+fetch(URL)
+  .then((response) => response.json())
+  .then((data) => {
+    // 영화 포스터 카드 추가하기
+    addCard(data.results);
 
     // 검색 버튼 클릭 이벤트
     $searchBtn.addEventListener("click", () => {
-      filterSearch();
+      filterCard(data.results);
     });
 
-    // 엔터 하면 검색하는 이벤트
+    // 엔터 이벤트
     $inputBox.addEventListener("keypress", (e) => {
       if (e.keyCode === 13) {
-        filterSearch();
+        filterCard(data.results);
       }
     });
   })
