@@ -7,6 +7,27 @@ const $searchBtn = document.querySelector("#search-btn");
 const $searchImg = document.querySelector("#search-img");
 const $movieCard = document.querySelector("#movie-card");
 
+// Api data 가져오기
+fetch(URL)
+  .then((response) => response.json())
+  .then((data) => {
+    // 영화 포스터 카드 추가하기
+    addCard(data.results);
+
+    // 검색 버튼 클릭 이벤트
+    $searchBtn.addEventListener("click", () => {
+      filterCard(data.results);
+    });
+
+    // 엔터 이벤트
+    $inputBox.addEventListener("keypress", (e) => {
+      if (e.keyCode === 13) {
+        filterCard(data.results);
+      }
+    });
+  })
+  .catch((error) => console.error("Error:", error));
+
 // header 우측 돋보기 클릭시, input box && button 화면 표시
 let num = 0;
 $searchImg.addEventListener("click", () => {
@@ -92,24 +113,3 @@ const filterCard = (card2) => {
     }
   }
 };
-
-// Api data 가져오기
-fetch(URL)
-  .then((response) => response.json())
-  .then((data) => {
-    // 영화 포스터 카드 추가하기
-    addCard(data.results);
-
-    // 검색 버튼 클릭 이벤트
-    $searchBtn.addEventListener("click", () => {
-      filterCard(data.results);
-    });
-
-    // 엔터 이벤트
-    $inputBox.addEventListener("keypress", (e) => {
-      if (e.keyCode === 13) {
-        filterCard(data.results);
-      }
-    });
-  })
-  .catch((error) => console.error("Error:", error));
